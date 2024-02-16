@@ -6,6 +6,17 @@
 		<Nullable>enable</Nullable>
 		<NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
 		<StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Blazor Analytics </Title>
+		<Authors>VeXHarbinger</Authors>
+		<Company>High Falootin Technology, Corporation</Company>
+		<Description>Simple Blazor component to push Event and page view data to the analytic services. </Description>
+		<Copyright>2024</Copyright>
+		<PackageProjectUrl>https://github.com/VeXHarbinger/BlazorAnalytics</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/VeXHarbinger/BlazorAnalytics</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>blazor, analytics, google-analytics, google-tag-manager, facebook-pixel, blazor-analytics, blazor-google-analytics, blazor-google-tag-manager,</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -15,7 +26,9 @@
 	  <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 	</ItemGroup>
 
-
+	<PropertyGroup>
+		<RepositoryUrl>https://github.com/VeXHarbinger/BlazorAnalytics</RepositoryUrl>
+	</PropertyGroup>
 
 	<ItemGroup>
 	  <None Include="wwwroot\BlazorAnalytics.js" />
