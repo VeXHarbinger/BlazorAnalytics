@@ -1,0 +1,50 @@
+﻿@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Routing
+@rendermode InteractiveServer
+
+@code{
+    protected bool IsFirstRequest = true;
+
+    [Inject]
+    protected IBlazorAnalytics Analytics { get; set; } = null;
+
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; } = null;
+
+    private async void OnLocationChanged(object sender, LocationChangedEventArgs args) => await OnLocationChanged(args.Location);
+
+    private async Task OnLocationChanged(string location)
+    {
+        if (!IsFirstRequest)
+        {
+            await Analytics.TrackNavigation(location);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await Analytics.Initialize();
+
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            await OnLocationChanged(NavigationManager.Uri);
+            IsFirstRequest = false;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        NavigationManager.LocationChanged -= OnLocationChanged;
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}
