@@ -13,12 +13,15 @@
 		<Description>Simple Blazor component to push Event and page view data to the analytic services. </Description>
 		<Copyright>2024</Copyright>
 		<PackageProjectUrl>https://github.com/VeXHarbinger/BlazorAnalytics</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/VeXHarbinger/BlazorAnalytics</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>blazor, analytics, google-analytics, google-tag-manager, facebook-pixel, blazor-analytics, blazor-google-analytics, blazor-google-tag-manager,</PackageTags>
 	</PropertyGroup>
-
+	<PropertyGroup>
+		<ContinousIntergrationBuilds>true</ContinousIntergrationBuilds>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.2" />
@@ -31,6 +34,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	  <None Include="wwwroot\BlazorAnalytics.js" />
 	</ItemGroup>
 
