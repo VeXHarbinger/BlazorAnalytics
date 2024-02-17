@@ -56,12 +56,12 @@ public sealed class BlazorAnalyticsClient(IJSRuntime jsRuntime) : IBlazorAnalyti
 
         if (HasToStartFacebookPixel())
         {
-            await module.InvokeAsync<string>("InitializeFacebookPixel", _FBPID);
+            await module.InvokeAsync<string>("InitializePixel", _FBPID);
         }
 
         if (HasToStartGoogleAnalytics())
         {
-            await module.InvokeAsync<string>("InitializeGoogleAnalytics", _GAID);
+            await module.InvokeAsync<string>("InitializeGA", _GAID);
         }
 
         if (HasToStartGTM())

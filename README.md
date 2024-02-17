@@ -41,6 +41,14 @@ Example:
 
 # How to trigger an Analytics Event
 
+    [Inject]
+    protected IBlazorAnalytics Analytics { get; set; }
+
+    private void MyFunction()
+    {
+      Analytics.LogEvent("button_clicked", "Some Value");
+    }
+
 # Blazor Analytics
 
 [![GitHub Issues](https://img.shields.io/github/issues/VeXHarbinger/BlazorAnalytics.svg)](https://github.com/VeXHarbinger/BlazorAnalytics/issues)
