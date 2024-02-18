@@ -16,7 +16,7 @@ public class Program
         // With all null Ids you can only LogEvent
         builder.Services.AddBlazorAnalytics(null, null, null);
 
-        //builder.Services.AddScoped<IBUA, BUAStrategy>();
+        //builder.Services.AddScoped<IBlazorAnalytics, Analytics>();
         //builder.Services.Configure<BlazorAnalyticsSettings>(builder.Configuration.GetSection("BlazorAnalytics"));
 
         var app = builder.Build();

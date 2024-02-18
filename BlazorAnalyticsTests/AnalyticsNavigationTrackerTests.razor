@@ -1,0 +1,23 @@
+﻿@using BlazorAnalytics
+@inherits TestContext
+<h3>AnalyticsNavigationTrackerTests</h3>
+
+@code {
+
+    [Fact]
+    public void AnalyticsNavigationTrackerLoadsJs()
+    {
+
+        var moduleInterop = JSInterop.SetupModule("./_content/BlazorAnalytics/BlazorAnalytics.js");
+        JSInterop.Mode = JSRuntimeMode.Loose;
+        moduleInterop.Setup<String>("InitGlobals");
+        Services.AddBlazorAnalytics(null, null, null);
+        // Arrange
+        var navMan = Services.GetRequiredService<FakeNavigationManager>();
+        var cut = RenderComponent<AnalyticsNavigationTracker>();
+
+        // Act - trigger a navigation change
+        navMan.NavigateTo("newUrl");
+
+    }
+}
