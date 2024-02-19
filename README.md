@@ -5,20 +5,25 @@ Supported platforms: Google Analytics, Google Tag Manager, and FaceBook Pixel.
 
 # First Credit where Credit is Due
 All the hard work was done by [welisonmenezes](https://github.com/welisonmenezes) in his [blazor-universal-analytics](https://github.com/welisonmenezes/blazor-universal-analytics) repository.
+I just built upon his work and adapted it to my Blazor needs.
 
 # Configuration
 
-## For Every Tracker
+First install the Nuget package
 
-First, Install Nuget, then import the namespaces in `_Imports.razor`
+```
+Install-Package BlazorAnalytics
+```
+
+Then import the namespaces in `_Imports.razor`
 
 ```
 @using BlazorAnalytics
 ```
 
-Then, add the `AnalyticsNavigationTracker` component below your Router in `App.razor`.<br/>
-The tracker listens to every navigation change while it's rendered on a page.
+Then, add the `AnalyticsNavigationTracker` component below your Router in `App.razor`.
 
+The tracker listens to the navigation change and reports the page_view event to your analytics tracker.
 ```diff
     <Router ... />
 +   <AnalyticsNavigationTracker />
@@ -26,20 +31,21 @@ The tracker listens to every navigation change while it's rendered on a page.
 
 ## Setting up Analytics
 
-Inside your main `Startup`/`Program`, call `AddBlazorAnalytics`. This will configure your GTAG_ID automatically.
+Inside your main `Startup`/`Program`, call `AddBlazorAnalytics`.
 
 ```diff
-+   builder.Services.AddBlazorAnalytics("YOUR_GTAG_ID", "YOUR_FBPIXEL_ID", null);
++   builder.Services.AddBlazorAnalytics("GoogleAnalyticsId", "PixelId", "TagManagerId");
 ```
 
-If YOUR_GTM_ID is set, YOUR_GTAG_ID and YOUR_FBPIXEL_ID will be ignored as GTM will manage this for you. Page view events will be heard if the embed of such scripts exists.
-Example:
+If TagManagerId is set, GoogleAnalyticsId and PixelId will be ignored as TagManager will manage this for you.
 
-```
-    builder.Services.AddBlazorAnalytics(null, null, null);
-```
+Page view events will be broadcast to your analytics tracker as long as an Id is provided.
+
+You can use all null values though and still use the LogEvent function.
 
 # How to trigger an Analytics Event
+There is a full example on the Demo's C;ient Counter page, but all you need to do in your code is request the service via the dependency injection.
+
 
     [Inject]
     protected IBlazorAnalytics Analytics { get; set; }
